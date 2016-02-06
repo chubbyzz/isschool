@@ -1,0 +1,47 @@
+<h3>Listing Courses</h3>
+
+<% if flash.any? %>
+    <div class="alert alert-warning">
+      <%= flash['notice']%>
+    </div>
+<%end%>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th width="10%">Name</th>
+      <th width="60%">Description</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.name %></td>
+        <td><%= course.description %></td>
+        <td>
+          <span class="label label-<%= course.course_status.label %>">
+            <%= course.course_status.name.capitalize %>
+          </span>
+        </td>
+        <td>
+          <%= link_to  course, class: 'btn btn-info'  do %>
+            <i class="glyphicon glyphicon-eye-open"></i>
+          <% end %>
+          <%= link_to edit_course_path(course), class: 'btn btn-primary' do %>
+              <i class="glyphicon glyphicon-pencil"></i>
+          <% end %>
+          <%= link_to course, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Course', new_course_path, {class: 'btn btn-primary'} %>

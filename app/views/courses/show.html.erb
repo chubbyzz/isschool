@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+
+<h3>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</h3>
+<div class="row pull-right">
+  <%= form_tag({action: :apply}, {class: 'form-inline'}) do %>
+      <div class="form-group">
+        <%= hidden_field_tag(:course_id, @course.id)%>
+        <label>Students</label>
+        <%= select_tag(:student_id, options_for_select(@students, {}), {class: 'form-control w-100-p', disabled: @students.empty?}) %>
+      </div>
+      <div class="form-group">
+        <br>
+        <%= submit_tag 'Apply on course', {class: 'btn btn-success'} %>
+      </div>
+  <% end %>
+</div>
+<p>
+  <strong>Description:</strong>
+  <%= @course.description %>
+  <strong>Status:</strong>
+  <span class="label label-<%= @course.course_status.label %>">
+    <%= @course.course_status.name.capitalize %>
+  </span>
+</p>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th width="30%">Name</th>
+    <th width="40%">Register number</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @course.students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.register_number %></td>
+        <td>
+          <span class="label label-<%= student.student_status.label %>">
+            <%= student.student_status.name.capitalize %>
+          </span>
+        </td>
+        <td>
+          <%= link_to  student, class: 'btn btn-info'  do %>
+              <i class="glyphicon glyphicon-eye-open"></i>
+          <% end %>
+          <%= link_to edit_student_path(student), class: 'btn btn-primary' do %>
+              <i class="glyphicon glyphicon-pencil"></i>
+          <% end %>
+          <%= link_to student, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+        </td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class="actions">
+
+  <%= link_to 'Register new student', new_classroom_path(@course), {class: 'btn btn-success'} %>
+  <div class="pull-right">
+    <%= link_to 'Edit', edit_course_path(@course), {class: 'btn btn-primary'} %>
+    <%= link_to 'Back', courses_path, {class: 'btn btn-default'} %>
+  </div>
+
+</div>

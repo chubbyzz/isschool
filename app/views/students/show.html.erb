@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h3>
+  <strong>Name:</strong>
+  <%= @student.name %>
+</h3>
+
+<p>
+  <strong>Register number:</strong>
+  <%= @student.register_number %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <span class="label label-<%= @student.student_status.label%>">
+    <%= @student.student_status.name.capitalize %>
+  </span>
+</p>
+<div class="pull-right">
+  <%= link_to 'Edit', edit_student_path(@student), {class: 'btn btn-primary'} %>
+  <%= link_to 'Back', students_path, {class: 'btn btn-default'} %>
+</div>

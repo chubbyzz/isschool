@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>School</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container-fluid">
+    <h2>IS <i>school</i></h2>
+  </div>
+</nav>
+<div class="row">
+  <div class="col-lg-2">
+    <div class="container-fluid">
+      <ul class="nav nav-pills nav-stacked">
+        <li role="presentation">
+          <%= link_to 'Students', students_path %>
+        </li>
+        <li role="presentation">
+          <%= link_to 'Courses', courses_path %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-offset-1 col-lg-8">
+    <%= yield %>
+  </div>
+</div>
+
+</body>
+</html>

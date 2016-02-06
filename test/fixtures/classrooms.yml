@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  studants_id: 1
+  coueses_id: 1
+  entry_at: 2015-06-12 19:54:21
+
+two:
+  studants_id: 1
+  coueses_id: 1
+  entry_at: 2015-06-12 19:54:21
