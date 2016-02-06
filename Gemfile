@@ -7,7 +7,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'web-console', group: :development
+# gem 'web-console', group: :development
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
