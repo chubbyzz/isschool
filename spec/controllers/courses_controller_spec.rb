@@ -33,11 +33,14 @@ RSpec.describe CoursesController, type: :controller do
   it 'should create a new record' do
     course = build(:course)
     allow(Course).to receive(:create).once.and_return(course)
+    allow(course).to receive(:valid?).once.and_return(true)
     post :create, course: {name: course.name, description: course.description, status: course.status}
     expect(response).to redirect_to course
   end
   it 'should fail on create a new record' do
-    allow(Course).to receive(:create).once.and_return(false)
+    course = build(:course)
+    allow(Course).to receive(:create).once.and_return(course)
+    allow(course).to receive(:valid?).once.and_return(false)
     post :create, course: {name: '', description: '', status: ''}
     expect(response).to render_template :new
   end

@@ -17,12 +17,15 @@ RSpec.describe StudentsController, type: :controller do
   it 'should create a new record' do
     student = build(:student)
     allow(Student).to receive(:create).once.and_return(student)
+    allow(student).to receive(:valid?).once.and_return(true)
     post :create, student: {name: student.name, register_number: student.register_number, status: student.status}
     expect(response).to redirect_to student
   end
 
   it 'should fail on create a new record' do
-    allow(Student).to receive(:create).once.and_return(false)
+    student = build(:student)
+    allow(Student).to receive(:create).once.and_return(student)
+    allow(student).to receive(:valid?).once.and_return(false)
     post :create, student: {name: '', register_number: '', status: ''}
     expect(response).to render_template :new
   end

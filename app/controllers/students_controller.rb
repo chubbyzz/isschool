@@ -12,7 +12,8 @@ class StudentsController < ApplicationController
   end
 
   def create
-    if @student = Student.create(student_params)
+    @student = Student.create(student_params)
+    if @student.valid?
       redirect_to @student, notice: 'Student was successfully created.'
     else
       render :new

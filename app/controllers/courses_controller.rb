@@ -7,7 +7,8 @@ class CoursesController < ApplicationController
   end
 
   def create
-    if @course = Course.create(course_params)
+    @course = Course.create(course_params)
+    if @course.valid?
       redirect_to @course, notice: 'Course was successfully created.'
     else
       render :new
